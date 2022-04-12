@@ -1,38 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="./assets/reset.css">
     <link rel="stylesheet" href="assets/style.css">
+
     <title>Project 1</title>
+
 </head>
 <body>
+
     <header>
+
         <h1>Loading Page Title</h1>
+
     </header>
+
     <main>
-        <div id="intro">Introduction and Instructions</div>
+
         <div id="landing-page">
-            <label for="same name">Appetizer</label><input class="checkbox" type="checkbox" placeholder="same name">
-            <label for="same name">Entree</label><input class="checkbox" type="checkbox" placeholder="same name">
-            <label for="same name">Cocktails</label><input class="checkbox" type="checkbox" placeholder="same name">
-            <label for="same name">Desserts</label><input class="checkbox" type="checkbox" placeholder="same name">
+
+            <div id="intro">Introduction and Instructions</div>
+
+            <div id="courses">
+
+                <input type="checkbox" class="checkbox" id="appetizer" name="appetizer">
+                <label class="container app" for="appetizer">Appetizer</label>
+
+                <input type="checkbox"class="checkbox" id="entree" name="entree">
+                <label class="container ent" for="entree">Entrée</label>
+
+                <input type="checkbox" class="checkbox" id="dessert" name="dessert">
+                <label class="container des" for="dessert">Dessert</label>
+
+                <input type="checkbox" class="checkbox" id="cocktails" name="cocktails">
+                <label class="container dri" for="cocktails">Cocktails</label>
+
+            </div>
             
-            <button>Submit</button>
-            <button>Feelin' Lazy</button>
-            <button>Feelin' Lucky</button>
+            <div id="landing-btns">
+
+                <button>Submit</button>
+                <button>Feelin' Lazy</button>
+                <button>Feelin' Lucky</button>
+
+            </div>
+
         </div>
 
         <div id="modal">
+
             <h3>Customize</h3>
             <input>Include</input>
             <input>Exclude</input>
             <button>Submit</button>
+
         </div>    
 
         <div id="searchresults">
+
             <div id="one-option"></div>
             <div id="two-option"></div>
             <div id="three-option"></div>
@@ -43,9 +74,12 @@
             <button>Print</button>
             <button>Absolutely Not</button>
             <button>Change Selections</button>
+
         </div>
 
     </main>
+
     <script src="./assets/script.js"></script>
+
 </body>
 </html>
