@@ -19,82 +19,154 @@ h5 {
     font-size: 1.1em;
 }
 
-body {
-    max-width: 1500px;
-    margin: auto;
-    padding: 20px;
-}
-
 /* variables */
 :root {
     --light: white;
-    --light2: lightgray;
+    --light2: rgb(250, 250, 250);
+    --shadow: rgb(240, 240, 240);
     --dark: black;
-    --dark2: rgb(69, 69, 69);
+    --dark2: rgb(25, 25, 25);
     --accent: bisque;
     --accent2: rgba(70, 131, 180, 0.5);
 }
 
+/* animations */
+@keyframes confirm {
+    from {box-shadow: none;}
+    25% {box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.5);}
+    to {box-shadow: none;}
+}
+
 /* page */
+body {
+    background-color: var(--light2);
+    max-width: 1500px;
+    margin: auto;
+    padding: 50px;
+    font-size: 16px;
+}
+
 header {
     display: flex;
     justify-content: center;
-    background-color: bisque;
-    padding: 30px;
-    box-shadow: 0px 0px 10px var(--light2);
+    background-color: var(--light);
+    padding: 50px;
+    border: 1px solid var(--dark);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--shadow);
+}
+
+#landing-page {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
 }
 
 #intro {
     display: flex;
     justify-content: center;
-    background-color: bisque;
-    margin-top: 20px;
-    padding: 30px;
-    box-shadow: 0px 0px 10px var(--light2);
-}
-
-#landing-page {
-    display: flex;
-}
-
-#landing-page button {
-    background-color: var(--accent2);
+    background-color: var(--light);
+    padding: 50px;
     border: 1px solid var(--dark);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--shadow);
 }
 
-/* customize checkboxes */
-#landing-page label {
-    display: block;
-    position: relative;
+#courses {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    height: 30vh;
+    box-shadow: 0px 0px 10px var(--shadow);
+}
+
+#landing-btns {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    border: 1px solid var(--dark2);
+    border-radius: 5px;
+    background-color: var(--accent2);
+    padding: 15px;
+    margin: 50px;
+    min-width: 200px;
+    width: auto;
+}
+
+button:hover {
     cursor: pointer;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
+    opacity: 0.75;
+}
+
+/* hide default checkbox */
+.checkbox {
+    display: none;
+}
+
+/* custom checkbox */
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     user-select: none;
-  }
-  
-  /* Hide the browser's default checkbox */
-  .container input {
-    position: absolute;
-    opacity: 0;
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--light);
+    text-shadow: 0px 0px 10px var(--dark);
+    height: 100%;
+    width: 100%;
+    opacity: 0.5;
+}
+
+.container:hover {
     cursor: pointer;
-    height: 0;
-    width: 0;
-  }
-  
-  /* Create a custom checkbox */
-  #landing-page input {
-    height: 50px;
-    width: 200px;
-    background-color: #eee;
-  }
-  
-  /* On mouse-over, add a grey background color */
-  .checkbox:hover {
-    background-color: #ccc;
-  }
-  
-  /* When the checkbox is checked, add a blue background */
-  .checkbox:checked {
-    background-color: #2196F3;
-  }
+    width: 200%;
+}
+
+.checkbox:checked + .container {
+    background-color: var(--dark);
+    animation: confirm 2s;
+    opacity: 1;
+}
+
+/* background images */
+.app {
+    background-image: url("images/appetizer.jpg");
+    background-color: var(--dark);
+    height: 30vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.ent {
+    background-image: url("images/entree.jpg");
+    background-color: var(--dark);
+    height: 30vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.des {
+    background-image: url("images/dessert.jpg");
+    background-color: var(--dark);
+    height: 30vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.dri {
+    background-image: url("images/cocktail.jpg");
+    background-color: var(--dark);
+    height: 30vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
