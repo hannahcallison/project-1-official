@@ -12,9 +12,49 @@ fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php')
 // Random Food //
 $("#searchresults").css('display', 'none')
 
+$( function() {
+
+    var allIngredients = []
+
+    // Ingredients List //
+    fetch('https://www.themealdb.com/api/json/v1/1/list.php?i=list')
+    .then(function(response){
+        return response.json()
+    })
+    .then(function(data) {
+
+        console.log(data)
+
+        var apiListLimit = data.meals.length
+
+        for (var i = 0; i < apiListLimit; i++) {
+            allIngredients.push(data.meals[i].strIngredient)
+        }
+
+        console.log(allIngredients)
+
+    })
+    .catch(err => console.error(err));
+
+    $( "#restrictions" ).autocomplete({
+        source: allIngredients
+    });
+
+});
+
+var restriction = $('#restrictions')
+var allRestrictions = []
+
+$('#restrictions-btn').click(function(event) {
+    event.preventDefault()
+    $('#selections').append(`<p>${restriction[0].value}</p>`)
+    allRestrictions.push(restriction[0].value)
+    console.log(allRestrictions)
+});
 
 function recipeGrabber() {
-    function appetizer () {
+
+    function appetizer() {
 
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=starter`)
         .then (function(response){
@@ -41,6 +81,7 @@ function recipeGrabber() {
                 // ingredients, consolidated ingredientsList
                 var ingredientsList = []
                 for (var i = 1; i <= apiListLimit; i++) {
+                
                     ingredientsList.push(data.meals[0][`strIngredient${i}`])
                 }
 
@@ -49,8 +90,16 @@ function recipeGrabber() {
                 for (var i = 1; i <= apiListLimit; i++) {
                     measureList.push(data.meals[0][`strMeasure${i}`])
                 }
+
+                // restricted ingredients check
+                for (let i = 0; i < allRestrictions.length; i++) {
+                    if (ingredientsList.includes(allRestrictions[i])) {
+                        appetizer()
+                    }
+                }
+
                 // put results on the page
-                $('#results').append(`
+                $('#appetizer-res').append(`
                 
                     <img src="${thumbnail}"><img>
                     <h1>${meal}</h1>
@@ -58,18 +107,76 @@ function recipeGrabber() {
                 `)
     
                 for (let i = 0; i < ingredientsList.length; i++) {
-                    $('#results').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
+                    $('#appetizer-res').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
                 }
     
-                $('#results').append(instructions)
+                $('#appetizer-res').append(instructions)
     
             })
             .catch(err => console.error(err));
         })
-    }  
+    }
+
     if( $("#appetizer").is(":checked") ){
         appetizer()
     }
+    
+    function entrees (){
+        fetch('https://www.themealdb.com/api/json/v1/1/random.php')
+        .then (function(response){
+            return response.json()
+            })
+            .then(function(data){
+             var category = data.meals[0].strCategory
+             if (category === "Dessert" || category === "Starter"){
+                 entrees()
+                } else{
+                    var meal = data.meals[0].strMeal;
+                    var thumbnail = data.meals[0].strMealThumb;
+                    var instructions = data.meals[0].strInstructions;
+        
+
+                    var apiListLimit = 20
+                    // ingredients, consolidated ingredientsList
+                    var ingredientsList = []
+                    for (var i = 1; i <= apiListLimit; i++) {
+                        ingredientsList.push(data.meals[0][`strIngredient${i}`])
+                    }
+    
+                    // measurements, consolidated measureList
+                    var measureList = []
+                    for (var i = 1; i <= apiListLimit; i++) {
+                        measureList.push(data.meals[0][`strMeasure${i}`])
+                    }
+
+                    // restricted ingredients check
+                for (let i = 0; i < allRestrictions.length; i++) {
+                    if (ingredientsList.includes(allRestrictions[i])) {
+                        entrees()
+                    }
+                }
+                    
+                    // put results on the page
+                    $('#entree-res').append(`
+                    
+                        <img src="${thumbnail}"><img>
+                        <h1>${meal}</h1>
+        
+                    `)
+        
+                    for (let i = 0; i < ingredientsList.length; i++) {
+                        $('#entree-res').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
+                    }
+        
+                    $('#entree-res').append(instructions)
+                }
+            })
+    }
+
+    if($("#entree").is(":checked")){
+        entrees()
+    }
+
     function dessert () {
         fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=dessert`)
         .then (function(response){
@@ -104,8 +211,16 @@ function recipeGrabber() {
                 for (var i = 1; i <= apiListLimit; i++) {
                     measureList.push(data.meals[0][`strMeasure${i}`])
                 }
+
+                // restricted ingredients check
+                for (let i = 0; i < allRestrictions.length; i++) {
+                    if (ingredientsList.includes(allRestrictions[i])) {
+                        dessert()
+                    }
+                }
+
                 // put results on the page
-                $('#results').append(`
+                $('#dessert-res').append(`
                 
                     <img src="${thumbnail}"><img>
                     <h1>${meal}</h1>
@@ -113,10 +228,10 @@ function recipeGrabber() {
                 `)
     
                 for (let i = 0; i < ingredientsList.length; i++) {
-                    $('#results').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
+                    $('#dessert-res').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
                 }
     
-                $('#results').append(instructions)
+                $('#dessert-res').append(instructions)
     
             })
             .catch(err => console.error(err));
@@ -125,56 +240,9 @@ function recipeGrabber() {
         console.log("success")
     
     }
+
     if($("#dessert").is(":checked") ){
         dessert()
-    }
-    function entrees (){
-        fetch('https://www.themealdb.com/api/json/v1/1/random.php')
-        .then (function(response){
-            return response.json()
-            })
-            .then(function(data){
-             var category = data.meals[0].strCategory
-             if (category === "Dessert" || category === "Starter"){
-                 entrees()
-                } else{
-                    var meal = data.meals[0].strMeal;
-                    var thumbnail = data.meals[0].strMealThumb;
-                    var instructions = data.meals[0].strInstructions;
-        
-
-                    var apiListLimit = 20
-                    // ingredients, consolidated ingredientsList
-                    var ingredientsList = []
-                    for (var i = 1; i <= apiListLimit; i++) {
-                        ingredientsList.push(data.meals[0][`strIngredient${i}`])
-                    }
-    
-                    // measurements, consolidated measureList
-                    var measureList = []
-                    for (var i = 1; i <= apiListLimit; i++) {
-                        measureList.push(data.meals[0][`strMeasure${i}`])
-                    }
-                    
-                    // put results on the page
-                    $('#results').append(`
-                    
-                        <img src="${thumbnail}"><img>
-                        <h1>${meal}</h1>
-        
-                    `)
-        
-                    for (let i = 0; i < ingredientsList.length; i++) {
-                        $('#results').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
-                    }
-        
-                    $('#results').append(instructions)
-                }
-            })
-    }
-
-    if($("#entree").is(":checked")){
-        entrees()
     }
 
     function cocktails () {
@@ -203,8 +271,16 @@ function recipeGrabber() {
             for (var i = 1; i <= apiListLimit; i++) {
                 measureList.push(data.drinks[0][`strMeasure${i}`])
             }
+
+            // restricted ingredients check
+            for (let i = 0; i < allRestrictions.length; i++) {
+                if (ingredientsList.includes(allRestrictions[i])) {
+                    cocktails()
+                }
+            }
+
             // put results on the page
-            $('#results').append(`
+            $('#cocktails-res').append(`
                 
                 <img src="${thumbnail}"><img>
                 <h1>${drink}</h1>
@@ -215,29 +291,34 @@ function recipeGrabber() {
                 if(ingredientsList[i] == null || ingredientsList[i] == undefined){
                     ingredientsList[i] = ""
                 } else {
-                    $('#results').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
+                    $('#cocktails-res').append(`<p>${measureList[i]} ${ingredientsList[i]}</p>`)
                 }}
     
-            $('#results').append(instructions)
+            $('#cocktails-res').append(instructions)
         })
         .catch(err => console.error(err));
     }
-
 
     if( $("#cocktails").is(":checked") ){
         cocktails()
     }
 
+    if(!($("#appetizer").is(":checked")) && !($("#entree").is(":checked")) && !($("#dessert").is(":checked")) && !($("#cocktails").is(":checked"))){
+        appetizer();
+        entrees();
+        dessert();
+        cocktails();
+    }
+
     $("#landing-page").css('display', 'none')
     $("#searchresults").css('display', 'block')
-}
+
+};
 
 $("#surprise").click(function(event){
     event.preventDefault()
     recipeGrabber()
-})
-
-
+});
 
 // setting variables for checkboxes
 var appetizer = $("#appetizer"); 
@@ -253,15 +334,6 @@ $("#submit-btn").click(function(event) {
     event.preventDefault();
     var modal = document.getElementById("myModal");
     var span = document.getElementsByClassName("close")[0];
-    if( $(".checkbox").is(":checked") ){
-        console.log("success")
-        alert("Checkbox Is checked");
-        // Pushes value to filter//
-    }
-    else{
-        alert("Checkbox Is not checked");
-        // Do nothing//
-    }
 
     modal.style.display = "block"
     });
@@ -277,6 +349,11 @@ window.onclick = function(event) {
 }
 
 // "submit" button -> take selected parameters, trigger customization modal, on submission of modal, add include/exclude selections to the original parameters and randomize based on that
+$('#modal-submit').click(function(event) {
+    event.preventDefault();
+    modal.style.display = "none";
+    recipeGrabber();
+});
 
 // show/hide pages based on how many/or options selected
     // show the 3 buttons on the recipe pages
@@ -286,6 +363,17 @@ function display() {
     window.print();
 }
 
-    // "absolutely not" button will randomize another recipe w/user's selected conditions
-    // "change selections" button will bring user back to the landing page
-    // appetizer = starter; dessert = dessert; entree = !dessert, !starter, !breakfast
+// "absolutely not" button will randomize another recipe w/user's selected conditions
+$('#abs-not').click(function(event) {
+    event.preventDefault();
+    $('#appetizer-res').text("");
+    $('#entree-res').text("");
+    $('#dessert-res').text("");
+    $('#cocktails-res').text("");
+    recipeGrabber();
+})
+
+// "change selections" button will bring user back to the landing page
+$('#change-selections').click(function() {
+    window.location.reload();
+})

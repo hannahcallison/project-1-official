@@ -187,11 +187,20 @@ button:hover {
 
 /* Modal Content/Box */
 .modal-content {
-  background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+    height: 500px;
+}
+
+.modal-content button {
+    width: 200px;
 }
 
 /* The Close Button */
@@ -209,13 +218,21 @@ button:hover {
   cursor: pointer;
 }
 
-.scroll-box { 
-    border:2px solid #ccc; 
-    width:300px; 
-    height: 100px; 
+.ui-autocomplete {
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    max-width: 200px;
+    max-height: 100px;
     overflow-y: scroll;
+    /* prevent horizontal scrollbar */
+    overflow-x: visible;
+    z-index: 3;
 }
 
-.modal-content{
-    display: flex;
+* html .ui-autocomplete {
+    height: 100px;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
 }
