@@ -62,12 +62,25 @@ body {
 
 header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background-color: var(--light);
-    border: 1px solid var(--dark);
+    background-image: url("./images/title.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--dark);
+    color: var(--light);
+    border: none;
+    text-shadow: 0px 0px 10px var(--dark);
     border-radius: 5px;
     padding: 50px;
 }
+
+header:hover{
+    cursor:pointer
+}
+
 
 #landing-page {
     display: flex;
@@ -75,14 +88,24 @@ header {
     margin-top: 50px;
 }
 
+#intro p {
+    text-align: center;
+}
+
 #intro {
     display: flex;
     justify-content: center;
     background-color: var(--light);
     padding: 50px;
-    border: 1px solid var(--dark);
+    border: none;
     border-radius: 5px;
     box-shadow: 0px 0px 10px var(--shadow);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./images/title1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--dark);
+    color: var(--light);
+    text-shadow: 0px 0px 10px var(--dark);
 }
 
 #courses {
@@ -103,7 +126,7 @@ header {
 button {
     border: 1px solid var(--dark2);
     border-radius: 5px;
-    background-color: var(--light);
+    background-color: var(--accent2);
     padding: 15px;
     margin: 50px;
     min-width: 200px;
@@ -341,4 +364,127 @@ button:hover {
 
 .hidden {
     display: none;
+}
+
+.block:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+#search-results img {
+    width: 335px;
+    height: 335px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.recipe-content {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.recipe-content h1 {
+    padding-bottom: 5px;
+}
+
+.recipe-content p {
+    padding: 2px;
+}
+
+.tab-radio {
+    display: none;
+}
+
+.tab {
+    text-align: center;
+    border: 1px solid var(--accent2);
+    background: var(--accent2);
+    color: var(--dark2);
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.tab-radio:checked + .tab{
+    background-color: var(--dark2);
+    color: var(--light);
+}
+
+#day-tabs{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#plan-head {
+    margin: auto 5px;
+    width: 200px;
+    text-align: right;
+}
+#search-res-btns {
+    display: flex;
+    justify-content: center;
+}
+
+#search-res-btns button{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 992px){
+    #courses {
+        flex-direction: column;
+        height: 60vh;
+        margin-bottom:10px;
+    }
+    .container:hover {
+        width: 100%;
+    }
+    #landing-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    #landing-btns button {
+        margin: 10px;
+    }
+    .ui-widget {
+        flex-direction: column;
+    }
+    #restrictions {
+        margin: auto;
+        margin-top:10px;
+    }
+    #day-tabs {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    #plan-head {
+        width: 60%;
+        text-align: left;
+    }
+    .tab{
+        width:30%;
+    }
+    .card {
+        flex-direction: column-reverse;
+    }
+    #search-res-btns{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search-res-btns button {
+        margin: 10px auto;
+    }
 }
