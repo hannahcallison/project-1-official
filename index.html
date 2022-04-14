@@ -9,13 +9,14 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">   
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous">
         </script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <link rel="stylesheet" href="./assets/reset.css">
     <link rel="stylesheet" href="assets/style.css">
 
@@ -25,9 +26,10 @@
 
 <body>
 
-    <header>
+    <header class="block">
 
         <h1>WikiLeeks</h1>
+        <h3>Recipe Grabber</h3>
 
     </header>
 
@@ -35,7 +37,15 @@
 
         <div id="landing-page">
 
-            <div id="intro">What are you craving?</div>
+            <div id="intro"><p>Welcome! Ever wanted to create something new and unique in the kitchen, but needed a little inspiration or help with finding novel dinner ideas? It doesn't matter how much you love to cook, deciding what to have for dinner every day can feel like a chore. This weekly meal planner takes this weight off your shoulders and makes the decisions for you! Click a course(s) to get started... 
+                <br>
+                <br>
+                "Surprise Me" for fully randomized recipes...
+                <br>
+                "Restrictions" if you have allergies or aversions...
+                <br>
+                "Feelin' Lazy" for a surprise...
+            </p></div>
 
             <div id="courses">
 
@@ -82,92 +92,152 @@
 
                     <button id="modal-submit">Submit</button>
                 </div>
-                
+
             </div>
-            
+
         </div>
 
-        <div id="searchresults">
+        <div id="search-results">
 
             <div id="day-tabs">
 
-                <h5>Plan for the week:</h5>
+                <h5 id="plan-head" class="block">Plan for the week:</h5>
 
-                <input type="radio" id="day1-radio" class="tab-radio" name="tab" value="day1-radio" checked="checked"></input>
+                <input type="radio" id="day1-radio" class="tab-radio block" name="tab" value="day1-radio"
+                    checked="checked"></input>
                 <label for="day1-radio" id="day1-tab" class="tab">Today</label>
 
-                <input type="radio" id="day2-radio" class="tab-radio" name="tab" value="day2-radio"></input>
+                <input type="radio" id="day2-radio" class="tab-radio block" name="tab" value="day2-radio"></input>
                 <label for="day2-radio" id="day2-tab" class="tab">Tomorrow</label>
 
-                <input type="radio" id="day3-radio" class="tab-radio" name="tab" value="day3-radio"></input>
-                <label for="day3-radio" id="day3-tab" class="tab">Day 3</label>
+                <input type="radio" id="day3-radio" class="tab-radio block" name="tab" value="day3-radio"></input>
+                <label for="day3-radio" id="day3-tab" class="tab"></label>
 
-                <input type="radio" id="day4-radio" class="tab-radio" name="tab" value="day4-radio"></input>
-                <label for="day4-radio" id="day4-tab" class="tab">Day 4</label>
+                <input type="radio" id="day4-radio" class="tab-radio block" name="tab" value="day4-radio"></input>
+                <label for="day4-radio" id="day4-tab" class="tab"></label>
 
-                <input type="radio" id="day5-radio" class="tab-radio" name="tab" value="day5-radio"></input>
-                <label for="day5-radio" id="day5-tab" class="tab">Day 5</label>
+                <input type="radio" id="day5-radio" class="tab-radio block" name="tab" value="day5-radio"></input>
+                <label for="day5-radio" id="day5-tab" class="tab"></label>
 
-                <input type="radio" id="day6-radio" class="tab-radio" name="tab" value="day6-radio"></input>
-                <label for="day6-radio" id="day6-tab" class="tab">Day 6</label>
+                <input type="radio" id="day6-radio" class="tab-radio block" name="tab" value="day6-radio"></input>
+                <label for="day6-radio" id="day6-tab" class="tab"></label>
 
-                <input type="radio" id="day7-radio" class="tab-radio" name="tab" value="day7-radio"></input>
-                <label for="day7-radio" id="day7-tab" class="tab">Day 7</label>
-                
+                <input type="radio" id="day7-radio" class="tab-radio block" name="tab" value="day7-radio"></input>
+                <label for="day7-radio" id="day7-tab" class="tab"></label>
+
             </div>
 
             <div id="day1" class="tab-content">
-                <div id="day1-appetizer"></div>
-                <div id="day1-entree"></div>
-                <div id="day1-dessert"></div>
-                <div id="day1-cocktails"></div>
+                <div id="day1-appetizer" class="card block">
+                    <div id="day1-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day1-entree" class="card block">
+                    <div id="day1-entree-content" class="recipe-content"></div>
+
+                </div>
+                <div id="day1-dessert" class="card block">
+                    <div id="day1-dessert-content" class="recipe-content"></div>
+
+                </div>
+                <div id="day1-cocktails" class="card block">
+                    <div id="day1-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day2" class="tab-content hidden">
-                <div id="day2-appetizer"></div>
-                <div id="day2-entree"></div>
-                <div id="day2-dessert"></div>
-                <div id="day2-cocktails"></div>
+                <div id="day2-appetizer" class="card block">
+                    <div id="day2-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day2-entree" class="card block">
+                    <div id="day2-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day2-dessert" class="card block">
+                    <div id="day2-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day2-cocktails" class="card block">
+                    <div id="day2-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day3" class="tab-content hidden">
-                <div id="day3-appetizer"></div>
-                <div id="day3-entree"></div>
-                <div id="day3-dessert"></div>
-                <div id="day3-cocktails"></div>
+                <div id="day3-appetizer" class="card block">
+                    <div id="day3-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day3-entree" class="card block">
+                    <div id="day3-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day3-dessert" class="card block">
+                    <div id="day3-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day3-cocktails" class="card block">
+                    <div id="day3-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day4" class="tab-content hidden">
-                <div id="day4-appetizer"></div>
-                <div id="day4-entree"></div>
-                <div id="day4-dessert"></div>
-                <div id="day4-cocktails"></div>
+                <div id="day4-appetizer" class="card block">
+                    <div id="day4-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day4-entree" class="card block">
+                    <div id="day4-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day4-dessert" class="card block">
+                    <div id="day4-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day4-cocktails" class="card block">
+                    <div id="day4-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day5" class="tab-content hidden">
-                <div id="day5-appetizer"></div>
-                <div id="day5-entree"></div>
-                <div id="day5-dessert"></div>
-                <div id="day5-cocktails"></div>
+                <div id="day5-appetizer" class="card block">
+                    <div id="day5-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day5-entree" class="card block">
+                    <div id="day5-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day5-dessert" class="card block">
+                    <div id="day5-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day5-cocktails" class="card block">
+                    <div id="day5-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day6" class="tab-content hidden">
-                <div id="day6-appetizer"></div>
-                <div id="day6-entree"></div>
-                <div id="day6-dessert"></div>
-                <div id="day6-cocktails"></div>
+                <div id="day6-appetizer" class="card block">
+                    <div id="day6-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day6-entree" class="card block">
+                    <div id="day6-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day6-dessert" class="card block">
+                    <div id="day6-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day6-cocktails" class="card block">
+                    <div id="day6-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
 
             <div id="day7" class="tab-content hidden">
-                <div id="day7-appetizer"></div>
-                <div id="day7-entree"></div>
-                <div id="day7-dessert"></div>
-                <div id="day7-cocktails"></div>
+                <div id="day7-appetizer" class="card block">
+                    <div id="day7-app-content" class="recipe-content"></div>
+                </div>
+                <div id="day7-entree" class="card block">
+                    <div id="day7-entree-content" class="recipe-content"></div>
+                </div>
+                <div id="day7-dessert" class="card block">
+                    <div id="day7-dessert-content" class="recipe-content"></div>
+                </div>
+                <div id="day7-cocktails" class="card block">
+                    <div id="day7-cocktails-content" class="recipe-content"></div>
+                </div>
             </div>
-
+            <div id="search-res-btns">
             <button onclick="display()">Print</button>
             <button id="abs-not">Absolutely Not</button>
             <button id="change-selections">Change Selections</button>
+            </div>
 
         </div>
 
