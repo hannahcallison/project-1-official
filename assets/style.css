@@ -1,6 +1,7 @@
 /* fonts */
 h1 {
     font-size: 2.4em;
+    font-weight: 700;
 }
 
 h2 {
@@ -22,12 +23,12 @@ h5 {
 /* variables */
 :root {
     --light: white;
-    --light2: rgb(250, 250, 250);
-    --shadow: rgb(240, 240, 240);
+    --light2: rgba(0, 0, 0, 0.01);
+    --shadow: rgba(0, 0, 0, 0.05);
     --dark: black;
-    --dark2: rgb(25, 25, 25);
-    --accent: bisque;
-    --accent2: rgba(70, 131, 180, 0.5);
+    --dark2: #161e2a;
+    --accent: #0D47A1;
+    --accent2: #BBDEFB;
 }
 
 /* animations */
@@ -37,24 +38,49 @@ h5 {
     to {box-shadow: none;}
 }
 
+@keyframes fade {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+@keyframes slide {
+    from {transform: translateY(300%);}
+    to {transform: translateY(0px)}
+
+}
+
 /* page */
 body {
-    background-color: var(--light2);
-    max-width: 1500px;
-    margin: auto;
+    background-color: var(--light);
+    max-width: 1800px;
     padding: 50px;
+    margin: auto;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
     font-size: 16px;
 }
 
 header {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background-color: var(--light);
-    padding: 50px;
-    border: 1px solid var(--dark);
+    background-image: url("./images/title.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--dark);
+    color: var(--light);
+    border: none;
+    text-shadow: 0px 0px 10px var(--dark);
     border-radius: 5px;
-    box-shadow: 0px 0px 10px var(--shadow);
+    padding: 50px;
 }
+
+header:hover{
+    cursor:pointer
+}
+
 
 #landing-page {
     display: flex;
@@ -62,14 +88,24 @@ header {
     margin-top: 50px;
 }
 
+#intro p {
+    text-align: center;
+}
+
 #intro {
     display: flex;
     justify-content: center;
     background-color: var(--light);
     padding: 50px;
-    border: 1px solid var(--dark);
+    border: none;
     border-radius: 5px;
     box-shadow: 0px 0px 10px var(--shadow);
+    background-image: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('./images/title1.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-color: var(--dark);
+    color: var(--light);
+    text-shadow: 0px 0px 10px var(--dark);
 }
 
 #courses {
@@ -77,8 +113,9 @@ header {
     justify-content: space-around;
     align-items: center;
     margin-top: 50px;
-    height: 30vh;
+    height: 33vh;
     box-shadow: 0px 0px 10px var(--shadow);
+    border-radius: 5px;
 }
 
 #landing-btns {
@@ -94,11 +131,14 @@ button {
     margin: 50px;
     min-width: 200px;
     width: auto;
+    box-shadow: 0px 0px 10px var(--shadow);
+    font-weight: 500;
 }
 
 button:hover {
     cursor: pointer;
-    opacity: 0.75;
+    background-color: var(--dark2);
+    color: var(--light);
 }
 
 /* hide default checkbox */
@@ -126,6 +166,7 @@ button:hover {
 .container:hover {
     cursor: pointer;
     width: 200%;
+    transition: all 1s ease-in-out;
 }
 
 .checkbox:checked + .container {
@@ -138,7 +179,7 @@ button:hover {
 .app {
     background-image: url("images/appetizer.jpg");
     background-color: var(--dark);
-    height: 30vh;
+    height: 33vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -147,7 +188,7 @@ button:hover {
 .ent {
     background-image: url("images/entree.jpg");
     background-color: var(--dark);
-    height: 30vh;
+    height: 33vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -156,7 +197,7 @@ button:hover {
 .des {
     background-image: url("images/dessert.jpg");
     background-color: var(--dark);
-    height: 30vh;
+    height: 33vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -165,24 +206,26 @@ button:hover {
 .dri {
     background-image: url("images/cocktail.jpg");
     background-color: var(--dark);
-    height: 30vh;
+    height: 33vh;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-/* The Modal (background) */
+/* modal background*/
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  position: fixed;
+  z-index: 1;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.5);
+  animation: fade 0.5s;
+  transition: all 0.5s ease-in-out;
 }
 
 /* Modal Content/Box */
@@ -190,43 +233,107 @@ button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
+    justify-content: center;
+    background-color: var(--light);
+    margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* Could be more or less, depending on screen size */
-    height: 500px;
+    border: 1px solid var(--dark2);
+    border-radius: 5px;
+    width: 80%;
+    max-width: 1500px;
+    height: auto;
+    animation: slide 1s backwards;
+    animation-delay: 0.5s;
 }
 
-.modal-content button {
+#restrictions {
+    width: 100%;
+    padding: 10px;
+    margin: 20px 10px;
+    font-weight: 300;
+}
+
+#restrictions-btn {
+    text-transform: uppercase;
+    padding: 0px 15px;
+    margin: 20px 0px;
+    background-color: var(--dark2);
+    color: var(--light);
+    border: 1px solid var(--dark2);
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px var(--shadow);
+    font-weight: 500;
+}
+
+#restrictions-btn:hover {
+    cursor: pointer;
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.modal-submit {
     width: 200px;
 }
 
-/* The Close Button */
+.modal-submit:hover {
+    cursor: pointer;
+    background-color: var(--dark2);
+    color: var(--light);
+}
+
+.modal-content label {
+    font-weight: 500;
+    font-size: 1em;
+    text-align: right;
+    align-self: center;
+}
+
+/* close button */
 .close {
-  color: #aaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
+  color: gray;
+  font-size: 2em;
+  font-weight: 500;
+  align-self: flex-end;
 }
 
 .close:hover,
 .close:focus {
-  color: black;
+  color: var(--dark2);
   text-decoration: none;
   cursor: pointer;
 }
 
+/* autocomplete */
+.ui-widget {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+    width: 66%;
+}
+
 .ui-autocomplete {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     background-color: var(--light);
     border: 1px solid var(--dark);
-    max-width: 200px;
-    max-height: 100px;
+    max-width: 400px;
+    max-height: 200px;
     overflow-y: scroll;
-    /* prevent horizontal scrollbar */
     overflow-x: visible;
-    z-index: 3;
+    z-index: 2;
+    user-select: none;
+}
+
+.ui-autocomplete li {
+    width: 100%;
+    padding: 10px;
+    font-weight: 300;
+}
+
+.ui-autocomplete li:hover {
+    cursor: pointer;
+    background-color: var(--accent2);
 }
 
 * html .ui-autocomplete {
@@ -235,4 +342,149 @@ button:hover {
 
 .ui-helper-hidden-accessible {
     display: none;
+}
+
+#selections p {
+    color: var(--dark);
+    background-color: var(--accent2);
+    border-radius: 5px;
+    padding: 5px;
+    user-select: none;
+}
+
+#selections p:hover {
+    cursor: pointer;
+    opacity: 70%;
+}
+
+/* daily planner tabs */
+#day-tabs {
+    display: flex;
+}
+
+.hidden {
+    display: none;
+}
+
+.block:not(:last-child) {
+    margin-bottom: 1.5rem;
+  }
+
+#search-results img {
+    width: 335px;
+    height: 335px;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.card {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    background-color: var(--light);
+    border: 1px solid var(--dark);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.recipe-content {
+    display: flex;
+    flex-direction: column;
+    width: auto;
+}
+
+.recipe-content h1 {
+    padding-bottom: 5px;
+}
+
+.recipe-content p {
+    padding: 2px;
+}
+
+.tab-radio {
+    display: none;
+}
+
+.tab {
+    text-align: center;
+    border: 1px solid var(--accent2);
+    background: var(--accent2);
+    color: var(--dark2);
+    width: 150px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.tab-radio:checked + .tab{
+    background-color: var(--dark2);
+    color: var(--light);
+}
+
+#day-tabs{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#plan-head {
+    margin: auto 5px;
+    width: 200px;
+    text-align: right;
+}
+#search-res-btns {
+    display: flex;
+    justify-content: center;
+}
+
+#search-res-btns button{
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 992px){
+    #courses {
+        flex-direction: column;
+        height: 60vh;
+        margin-bottom:10px;
+    }
+    .container:hover {
+        width: 100%;
+    }
+    #landing-btns {
+        flex-direction: column;
+        align-items: center;
+    }
+    #landing-btns button {
+        margin: 10px;
+    }
+    .ui-widget {
+        flex-direction: column;
+    }
+    #restrictions {
+        margin: auto;
+        margin-top:10px;
+    }
+    #day-tabs {
+        flex-wrap: wrap;
+        justify-content: space-between;
+    }
+    #plan-head {
+        width: 60%;
+        text-align: left;
+    }
+    .tab{
+        width:30%;
+    }
+    .card {
+        flex-direction: column-reverse;
+    }
+    #search-res-btns{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #search-res-btns button {
+        margin: 10px auto;
+    }
 }
