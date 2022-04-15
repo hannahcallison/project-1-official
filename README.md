@@ -46,7 +46,7 @@ Wikileeks Recipe Grabber is a web application that utilizes two external APIs (T
 
 As a person who likes to cook, I want to randomly generate creative recipes when I need inspiration so that I can try new food and cocktails.
 
-Given I want a new recipe when I click on one of the course buttons I am selecting what kind of dish I am looking for and/or if I want a cocktail recipe. I can also select none of the criteria, which selects all of them. I can also hit the **Restrictions** button and enter ingredients that I want to exclude from the recipe(s).
+Given I want a new recipe when I click on one of the course buttons I am selecting what kind of dish I am looking for and/or if I a cocktail recipe. I can also select none of the criteria, which selects all of them. I can also hit the **Restrictions** button and enter ingredients that I want to exclude from the recipe(s).
 
 When I hit the **Submit** button...
 * My new random recipes are generated on the screen and I can tab through days of the week to meal plan with numerous randomized recipes
@@ -122,11 +122,12 @@ _Full Application Functionality_
 
 ## 6. **Direction for Future Development**
 
-- Adding a price function to assist with budgeting and managing costs
-- Creating a function to save the recipes locally instead of printing the page for future reference
-- Further optimizing the web design and adding additional styling elements for a better UI experience
-- Utilizing the Uber Eats API to add improved functionality to the Feelin' Lazy button
-- Integrating a video link (e.g. YouTube) as an additional guide
+- Add menu planning to a calendar
+- Print button prints all 7 recipes
+- Filter based on ingredients available to user
+- Adding price range function to assist with budgeting and managing costs
+- Creating a function to save the recipes to a 'favorites' link for future reference
+- Integrating a video link (e.g. YouTube) as an additional guide, when available
 
 <p>&nbsp;</p>
 
